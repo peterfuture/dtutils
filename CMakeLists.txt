@@ -16,8 +16,8 @@ AUX_SOURCE_DIRECTORY(src SRC_UTILS)
 ADD_LIBRARY(dtutils STATIC ${SRC_UTILS})
 
 # target - test
-ADD_EXECUTABLE(test test/test.c)
-TARGET_LINK_LIBRARIES(test dtutils)
+ADD_EXECUTABLE(test_list test/test_list.c)
+TARGET_LINK_LIBRARIES(test_list dtutils)
 
 INSTALL(TARGETS dtutils
     RUNTIME DESTINATION bin
