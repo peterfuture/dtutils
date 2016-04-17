@@ -20,7 +20,7 @@ ADD_EXECUTABLE(test_list test/test_list.c)
 TARGET_LINK_LIBRARIES(test_list dtutils)
 
 INSTALL(TARGETS dtutils
-    RUNTIME DESTINATION bin
+    #RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     )

@@ -26,12 +26,11 @@
 #define KWHT  "\x1B[37m"
 
 
-static int dt_log_level = DT_LOG_INFO;
+static int dt_log_level = DT_LOG_INFO; // default print INFO+ Level
 //static FILE * dt_fp = NULL;
 
 static int check_level(int level)
 {
-    dt_log_level = 0;
     return level >= dt_log_level;
 }
 
@@ -78,13 +77,12 @@ void dt_error(void *tag, const char *fmt, ...)
         return;
     }
     display_time();
-    dt_get_log_level(DT_LOG_DEBUG);
+    dt_get_log_level(DT_LOG_ERROR);
     printf("[%s] ", (char *) tag);
     va_list vl;
     va_start(vl, fmt);
     vprintf(fmt, vl);
     va_end(vl);
-
 }
 
 void dt_debug(void *tag, const char *fmt, ...)
@@ -93,7 +91,7 @@ void dt_debug(void *tag, const char *fmt, ...)
         return;
     }
     display_time();
-    dt_get_log_level(DT_LOG_WARNING);
+    dt_get_log_level(DT_LOG_DEBUG);
     printf("[%s] ", (char *) tag);
     va_list vl;
     va_start(vl, fmt);
@@ -107,7 +105,7 @@ void dt_warning(void *tag, const char *fmt, ...)
         return;
     }
     display_time();
-    dt_get_log_level(DT_LOG_INFO);
+    dt_get_log_level(DT_LOG_WARNING);
     printf("[%s] ", (char *) tag);
     va_list vl;
     va_start(vl, fmt);
