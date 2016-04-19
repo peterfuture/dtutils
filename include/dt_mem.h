@@ -13,7 +13,11 @@
  * =====================================================================================
  */
 
+#include <limits.h>
+
 #include "dt_error.h"
+
+#define dt_alloc_size(...) __attribute__((alloc_size(__VA_ARGS__)))
 
 /**
  * Multiply two size_t values checking for overflow.
@@ -32,6 +36,23 @@ static inline int dt_size_mult(size_t a, size_t b, size_t *r)
 }
 
 void *dt_malloc(size_t size);
+
+/**
+ * Allocate a block of size * nmemb bytes with dt_malloc().
+ * @param nmemb Number of elements
+ * @param size Size of the single element
+ * @return Pointer to the allocated block, NULL if the block cannot
+ * be allocated.
+ * @see dt_malloc()
+ */
+dt_alloc_size(1, 2) static inline void *dt_malloc_array(size_t nmemb, size_t size)
+{
+    if (!size || nmemb >= INT_MAX / size) {
+        return NULL;
+    }
+    return dt_malloc(nmemb * size);
+}
+
 void *dt_realloc(void *ptr, size_t size);
 void *dt_realloc_f(void *ptr, size_t nelem, size_t elsize);
 int dt_reallocp(void *ptr, size_t size);
