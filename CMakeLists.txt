@@ -14,10 +14,13 @@ ADD_DEFINITIONS(-DENABLE_LINUX)
 INCLUDE_DIRECTORIES(include)
 AUX_SOURCE_DIRECTORY(src SRC_UTILS)
 ADD_LIBRARY(dtutils STATIC ${SRC_UTILS})
+TARGET_LINK_LIBRARIES(dtutils pthread)
 
 # target - test
 ADD_EXECUTABLE(test_list test/test_list.c)
 TARGET_LINK_LIBRARIES(test_list dtutils)
+ADD_EXECUTABLE(test_event test/test_event.c)
+TARGET_LINK_LIBRARIES(test_event dtutils)
 
 INSTALL(TARGETS dtutils
     #RUNTIME DESTINATION bin
