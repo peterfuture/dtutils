@@ -14,7 +14,11 @@ ADD_DEFINITIONS(-DENABLE_LINUX)
 INCLUDE_DIRECTORIES(include)
 AUX_SOURCE_DIRECTORY(src SRC_UTILS)
 ADD_LIBRARY(dtutils STATIC ${SRC_UTILS})
-TARGET_LINK_LIBRARIES(dtutils pthread)
+if(BUILD_FOR_ANDROID)
+    MESSAGE("Android pthread prebuild to libc")
+else()
+    TARGET_LINK_LIBRARIES(dtutils pthread)
+endif()
 
 # target - test
 ADD_EXECUTABLE(test_list test/test_list.c)
@@ -24,9 +28,13 @@ TARGET_LINK_LIBRARIES(test_event dtutils)
 ADD_EXECUTABLE(test_pool test/test_pool.c)
 TARGET_LINK_LIBRARIES(test_pool dtutils)
 
-INSTALL(TARGETS dtutils
-    #RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    )
-INSTALL(DIRECTORY include/ DESTINATION /usr/local/include/${PROJECT_NAME})
+if(BUILD_FOR_ANDROID)
+    MESSAGE("Android Can Not Install")
+else()
+    INSTALL(TARGETS dtutils
+        #RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
+    INSTALL(DIRECTORY include/ DESTINATION /usr/local/include/${PROJECT_NAME})
+endif()
