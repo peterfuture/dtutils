@@ -33,6 +33,8 @@ ADD_EXECUTABLE(test_list test/test_list.c)
 TARGET_LINK_LIBRARIES(test_list dtutils)
 ADD_EXECUTABLE(test_event test/test_event.c)
 TARGET_LINK_LIBRARIES(test_event dtutils)
+ADD_EXECUTABLE(test_pool test/test_pool.c)
+TARGET_LINK_LIBRARIES(test_pool dtutils)
 
 INSTALL(TARGETS dtutils
     #RUNTIME DESTINATION bin

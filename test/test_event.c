@@ -2,7 +2,7 @@
  * =====================================================================================
  *
  *    Filename   :  test_event.c
- *    Description:  
+ *    Description:
  *    Version    :  1.0
  *    Created    :  2016年04月22日 13时44分14秒
  *    Revision   :  none
@@ -33,8 +33,9 @@ int main(int argc, char **argv)
     dt_send_event_sync(mgt, event);
 
     event_t *event_tmp = dt_get_event(server);
-    if(event_tmp)
+    if (event_tmp) {
         dt_info(TAG, "Get event:%d \n", event_tmp->type);
+    }
     dt_remove_server(mgt, server);
     dt_event_server_release(mgt);
     return 0;
