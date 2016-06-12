@@ -14,7 +14,7 @@ Toolbox for c.
 ### Android
 
 - mkdir build & cd build
-- cmake DCMAKE_TOOLCHAIN_FILE=../build_android.cmake ..
+- cmake -DCMAKE_TOOLCHAIN_FILE=../build_android.cmake ..
 - make
 
 ## Author
