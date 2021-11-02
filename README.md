@@ -17,9 +17,6 @@ Toolbox for c.
 - cmake -DCMAKE_TOOLCHAIN_FILE=../build_android.cmake ..
 - make
 
-## Author
-
-peter_future@outlook.com
 
 # Licence
 
